@@ -66,7 +66,6 @@ public class ItemDetailsActivity extends AppCompatActivity implements FragmentCa
             Intent intent = new Intent(this,ItemDetailsActivity.class);
             intent.putExtra(BundleConstants.ITEM_DETAILS_KEY, item);
             startActivity(intent);
-
     }
 
     @Override
