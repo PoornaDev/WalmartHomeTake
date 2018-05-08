@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -47,9 +49,9 @@ public class HomeActivity extends AppCompatActivity implements HomeTakeContract.
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if(validateInput(query)) {
-                    searchView.setQuery("", false);
-                    searchView.clearFocus();
                     presenter.loadItems(query);
+                    searchView.clearFocus();
+                    searchView.setQuery("", false);
                 }
                 return true;
             }
@@ -91,13 +93,13 @@ public class HomeActivity extends AppCompatActivity implements HomeTakeContract.
     }
 
     @Override
-    public void showError(String error) {
-
+    public void showNoNetworkToast() {
+        Toast.makeText(this, getString(R.string.no_network_message), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean validateInput(String input) {
-        return (input == null || input.length() <1 ) ? false : true;
+        return !(input == null || input.length() < 1);
     }
 
     @Override

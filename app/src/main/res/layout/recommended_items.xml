@@ -9,4 +9,21 @@
     tools:context="walmart.com.hometake.views.ItemDetailsActivity"
     tools:showIn="@layout/activity_item_details">
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommended_list_progress"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/no_data_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="8dp"
+        android:layout_gravity="center"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:text="@string/no_data_avaialble"/>
+
 </FrameLayout>

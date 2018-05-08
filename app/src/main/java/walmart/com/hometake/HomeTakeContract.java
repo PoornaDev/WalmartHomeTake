@@ -1,6 +1,7 @@
 package walmart.com.hometake;
 
 
+import android.content.Context;
 import android.view.View;
 
 import java.util.List;
@@ -13,7 +14,6 @@ public interface HomeTakeContract {
     interface SearchItemsView extends BaseView<SearchPresenter> {
             void showProgress();
             void hideProgress();
-            void showError(String error);
             boolean validateInput(String input);
             void showSearchResults(List<Item> resultsList);
     }
@@ -24,6 +24,7 @@ public interface HomeTakeContract {
         void hideProgress();
         void populateRecommendedItemsList(List<Item> items);
         void populateNoRecordsAvailable();
+
     }
 
     interface SearchPresenter extends BasePresenter {

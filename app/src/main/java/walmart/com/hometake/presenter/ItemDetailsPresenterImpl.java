@@ -10,18 +10,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import walmart.com.hometake.HomeTakeContract;
 import walmart.com.hometake.model.network.HomeTakeSearchServiceInterface;
+import walmart.com.hometake.model.network.NetworkUtils;
 import walmart.com.hometake.model.network.RetrofitUtils;
 import walmart.com.hometake.model.pojos.Item;
-import walmart.com.hometake.model.pojos.SearchResults;
 import walmart.com.hometake.model.utils.NetworkConstants;
-
-/**
- * Created by Abhigna on 5/6/18.
- */
 
 public class ItemDetailsPresenterImpl implements HomeTakeContract.ItemDetailsPresenter {
 
-    HomeTakeContract.ItemDetailsView mView;
+    private HomeTakeContract.ItemDetailsView mView;
     public static final String TAG = "DetailsPresenterImpl";
 
     public ItemDetailsPresenterImpl(HomeTakeContract.ItemDetailsView view) {
@@ -43,12 +39,16 @@ public class ItemDetailsPresenterImpl implements HomeTakeContract.ItemDetailsPre
 
     @Override
     public void loadRecommendedItems(int itemId) {
-        Log.i(TAG, "loadRecommendedItems for Item :"+itemId);
+        if(!NetworkUtils.isNetworkConnected(mView.getActivityContext())) {
+            mView.showNoNetworkToast();
+            mView.populateRecommendedItemsList(null);
+            return;
+        }
+
         Retrofit retrofit = RetrofitUtils.getRetrofit();
         HomeTakeSearchServiceInterface serviceInterface =  retrofit.create(HomeTakeSearchServiceInterface.class);
         Call<List<Item>> recommendedCallback =  serviceInterface.getRecommendedItems( NetworkConstants.API_KEY,itemId+"");
         Log.i(TAG,"Request::"+recommendedCallback.request().toString());
-
         recommendedCallback.enqueue(new Callback<List<Item>>() {
             @Override
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
@@ -70,6 +70,11 @@ public class ItemDetailsPresenterImpl implements HomeTakeContract.ItemDetailsPre
 
     @Override
     public void loadItemDetails(String itemId) {
+
+        if(!NetworkUtils.isNetworkConnected(mView.getActivityContext())) {
+            mView.showNoNetworkToast();
+            return;
+        }
 
         mView.showProgress();
         Retrofit retrofit = RetrofitUtils.getRetrofit();

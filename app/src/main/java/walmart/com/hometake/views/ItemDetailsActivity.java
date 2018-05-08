@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class ItemDetailsActivity extends AppCompatActivity implements FragmentCa
     HomeTakeContract.ItemDetailsPresenter mPresenter;
     ItemDetailsFragment detailsFragment;
     RecommendedProductsListFragment mRecommendedListFragment;
+    ProgressBar mBottomProgressBar;
+    View noDataAvailableView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,11 @@ public class ItemDetailsActivity extends AppCompatActivity implements FragmentCa
     }
 
     private void initRecommendedListFragment() {
+
+        mBottomProgressBar = (ProgressBar) findViewById(R.id.recommended_list_progress);
+
+        noDataAvailableView = findViewById(R.id.no_data_tv);
+
         FragmentManager fragmentManager =  getSupportFragmentManager();
         mRecommendedListFragment = (RecommendedProductsListFragment) fragmentManager
                 .findFragmentByTag(RecommendedProductsListFragment.class.getSimpleName());
@@ -59,6 +69,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements FragmentCa
                     mRecommendedListFragment,
                     RecommendedProductsListFragment.class.getSimpleName()).commit();
         }
+
     }
 
     @Override
@@ -99,14 +110,33 @@ public class ItemDetailsActivity extends AppCompatActivity implements FragmentCa
 
     @Override
     public void populateRecommendedItemsList(List<Item> items) {
+
+        if(mBottomProgressBar!=null) {
+            mBottomProgressBar.setVisibility(View.GONE);
+        }
         if(null == items) {
             return;
         }
+        if(noDataAvailableView!=null) {
+            noDataAvailableView.setVisibility(View.GONE);
+        }
         mRecommendedListFragment.refreshAdapter(items);
+
     }
 
     @Override
     public void populateNoRecordsAvailable() {
-
+        if(mBottomProgressBar!=null) {
+            mBottomProgressBar.setVisibility(View.GONE);
+        }
+        if(noDataAvailableView!=null) {
+            noDataAvailableView.setVisibility(View.VISIBLE);
+        }
     }
+
+    @Override
+    public void showNoNetworkToast() {
+        Toast.makeText(this, getString(R.string.no_network_message), Toast.LENGTH_SHORT).show();
+    }
+
 }

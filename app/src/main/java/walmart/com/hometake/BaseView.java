@@ -1,11 +1,11 @@
 package walmart.com.hometake;
 
-/**
- * Created by Abhigna on 3/26/18.
- */
+import android.content.Context;
 
 public interface BaseView<T extends  BasePresenter> {
 
     void setPresenter(T presenter);
     void init();
+    Context getActivityContext();
+    void showNoNetworkToast();
 }
