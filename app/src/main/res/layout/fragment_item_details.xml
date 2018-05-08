@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/item_details_title"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceSearchResultTitle"
         tools:layout_editor_absoluteY="0dp"
