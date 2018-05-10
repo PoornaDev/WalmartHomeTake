@@ -34,5 +34,6 @@ public interface HomeTakeContract {
     interface ItemDetailsPresenter extends  BasePresenter{
         void showItemDetails(Item item);
         void loadRecommendedItems(int itemId);
+        void loadItemDetails(String itemId);
     }
 }
