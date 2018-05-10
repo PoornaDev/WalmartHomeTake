@@ -20,8 +20,9 @@
     2. User can see list of (10) products as a CardView which includes Image Thubmnail, product title, price , and description<br/>
     3. Once user tap on any cardview he will be navigating to Details screen. <br/> - <b>Please refer Improvement section</b><br/>
         Details screen will show selected Product's title, big image, price, description and <b>Recommended Products</b> <br/>
-    4.Details Screen will make a retrofit call to walmart recommended API and fetch products based on the user selected item in step-3<br/>
-    5. Most Importantly Orientation handled, and UI also compatible with Multiple devices such as handsets, tablets - <b>Please refer Improvement section</b> <br/>
+    4. Details Screen will make a retrofit call to walmart recommended API and fetch products based on the user selected item in step-3<br/>
+    5. <b>Most Importantly Orientation handled, and UI also compatible with Multiple devices such as handsets, tablets</b> - <b>Please refer Improvement section</b> <br/>
+    6. Recommended Items at bottom of the screen are tappable and will open Details Screen
     
 4. Communication Between Screens:<br/>
     1. HomeActivity and DetailsActivity both implemented FragmentCallback interface for communication between Fragment and Activity<br/>
