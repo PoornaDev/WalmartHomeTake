@@ -39,6 +39,7 @@
     3. HomeScreen list item layout can be modified for more good looking UI(mainly Image) in tablet by having different dimesnions<br/>
     4. Passing Seriliazable object between Activities is not a good practice , instead we can create Parcellable objects.<br/>
     5. We can write test cases for UI also but for now I only focused on Presenter layer.<br/>
+    6. Since I am pretty much familiar with MVP I have used this pattern, now a days everyone is moving/using <b>MVVM architecture with dependecy injection</b>.<br/>
 7. Known issues:<br/>
    Once user sees the list of items and on device back press then search bar is not showing up again - As a fix I believe moving search bar nav to BaseActivity might solve this<br/>
   
