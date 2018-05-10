@@ -49,7 +49,7 @@ public class SearchItemsPresenter implements HomeTakeContract.SearchPresenter {
             Retrofit retrofit = RetrofitUtils.getRetrofit();
             HomeTakeSearchServiceInterface service = retrofit.create(HomeTakeSearchServiceInterface.class);
             Call<SearchResults> searchResultsCallback =  service.getSearchResultsList(queryInput, NetworkConstants.API_KEY, "json");
-            Log.i("loadItems URL",searchResultsCallback.request().toString());
+            //Log.i("loadItems URL",searchResultsCallback.request().toString());
             searchResultsCallback.enqueue(new Callback<SearchResults>() {
                 @Override
                 public void onResponse(Call<SearchResults> call, Response<SearchResults> response) {
@@ -58,7 +58,7 @@ public class SearchItemsPresenter implements HomeTakeContract.SearchPresenter {
                 }
                 @Override
                 public void onFailure(Call<SearchResults> call, Throwable t) {
-                    Log.i("ERROR","onFailure");
+                    //Log.i("ERROR","onFailure");
                 }
             });
         }

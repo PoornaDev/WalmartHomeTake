@@ -1,8 +1,10 @@
-package walmart.com.hometake;
+package walmart.com.hometake.views;
 
 import android.content.Context;
 
-public interface BaseView<T extends  BasePresenter> {
+import walmart.com.hometake.presenter.BasePresenter;
+
+public interface BaseView<T extends BasePresenter> {
 
     void setPresenter(T presenter);
     void init();

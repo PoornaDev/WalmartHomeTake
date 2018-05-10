@@ -1,13 +1,12 @@
 package walmart.com.hometake;
 
 
-import android.content.Context;
-import android.view.View;
-
 import java.util.List;
 
 import walmart.com.hometake.model.pojos.Item;
 import walmart.com.hometake.model.pojos.SearchResults;
+import walmart.com.hometake.presenter.BasePresenter;
+import walmart.com.hometake.views.BaseView;
 
 public interface HomeTakeContract {
 
@@ -35,6 +34,5 @@ public interface HomeTakeContract {
     interface ItemDetailsPresenter extends  BasePresenter{
         void showItemDetails(Item item);
         void loadRecommendedItems(int itemId);
-        void loadItemDetails(String itemId);
     }
 }

@@ -1,4 +1,4 @@
-package walmart.com.hometake.views;
+package walmart.com.hometake;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
